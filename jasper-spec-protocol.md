@@ -39,24 +39,24 @@ points in this system.
       "size": 4,
       "points": [
         {
-          "id":   "av.1b6b",
+          "addr": "av.1b6b",
           "name": "SetpointTemp",
           "unit": "°F"
           "path": "/PxHome/Graphics/Campus/Building/Floor1/VavZoneC/SetpointTemp",
         },
         {
           "addr": "bv.1b75",
-          "name": "Occupied",
-          "path": "/PxHome/Graphics/Campus/Building/Floor1/VavZoneC/Occupied"
+          "name": "FanStatus",
+          "path": "/PxHome/Graphics/Campus/Building/Floor1/VavZoneC/FanStatus"
         },
         {
-          "id":   "av.1b6d",
+          "addr": "av.1b6d",
           "name": "HeatingCoil",
           "unit": "%"
           "path": "/PxHome/Graphics/Campus/Building/Floor1/VavZoneC/HeatingCoil",
         },
         {
-          "id":   "eo.1b83",
+          "addr": "eo.1b83",
           "name": "OccStatus",
           "enum": "occupied,unoccupied"
           "path": "/PxHome/Graphics/Campus/Building/Floor1/OccStatus",
