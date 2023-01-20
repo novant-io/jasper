@@ -36,7 +36,7 @@ The `/points` endpoint provides meta-data information about the available
 points in this system.
 
     {
-      "size": 3,
+      "size": 4,
       "points": [
         {
           "id":   "av.1b6b",
@@ -54,7 +54,7 @@ points in this system.
           "name": "HeatingCoil",
           "unit": "%"
           "path": "/PxHome/Graphics/Campus/Building/Floor1/VavZoneC/HeatingCoil",
-        }
+        },
         {
           "id":   "eo.1b83",
           "name": "OccStatus",
