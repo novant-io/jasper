@@ -36,7 +36,6 @@ The `/points` endpoint provides meta-data information about the available
 points in this system.
 
     {
-      "size": 4,
       "points": [
         {
           "addr": "av.1b6b",
@@ -105,7 +104,6 @@ Some examples:
 The `/values` endpoint provides current values for points in this system.
 
     {
-      "size": 3,
       "values": [
         { "addr":"av.1b6b", "val":72.3 },
         { "addr":"bv.1b75", "val":1 },
