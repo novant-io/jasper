@@ -99,6 +99,37 @@ Some examples:
     ai.1b75
     bo.foo.bar
 
+### Path Prefix Filter
+
+Results can be restricted to a system sub-path using the `path_prefix` request
+argument:
+
+    POST /jasper/v1/points
+
+    path_prefix=/PxHome/Graphics/Campus/Building/Floor1/VavZoneC
+
+    {
+      "points": [
+        {
+          "addr": "av.1b6b",
+          "name": "SetpointTemp",
+          "unit": "°F"
+          "path": "/PxHome/Graphics/Campus/Building/Floor1/VavZoneC/SetpointTemp",
+        },
+        {
+          "addr": "bv.1b75",
+          "name": "FanStatus",
+          "path": "/PxHome/Graphics/Campus/Building/Floor1/VavZoneC/FanStatus"
+        },
+        {
+          "addr": "av.1b6d",
+          "name": "HeatingCoil",
+          "unit": "%"
+          "path": "/PxHome/Graphics/Campus/Building/Floor1/VavZoneC/HeatingCoil",
+        },
+      ]
+    }
+
 ## Values
 
 The `/values` endpoint provides current values for points in this system.
@@ -107,7 +138,8 @@ The `/values` endpoint provides current values for points in this system.
       "values": [
         { "addr":"av.1b6b", "val":72.3 },
         { "addr":"bv.1b75", "val":1 },
-        { "addr":"av.1b6d", "val":25 }
+        { "addr":"av.1b6d", "val":25 },
+        { "addr":"eo.1b83", "val":1 }
       ]
     }
 
@@ -121,3 +153,20 @@ Where `val` is one of:
 
   * If the point does not exist or there is no current value supported, then
     the `null` value.
+
+### Path Prefix Filter
+
+Results can be restricted to a system sub-path using the `path_prefix` request
+argument:
+
+    POST /jasper/v1/values
+
+    path_prefix=/PxHome/Graphics/Campus/Building/Floor1/VavZoneC
+
+    {
+      "values": [
+        { "addr":"av.1b6b", "val":72.3 },
+        { "addr":"bv.1b75", "val":1 },
+        { "addr":"av.1b6d", "val":25 }
+      ]
+    }
