@@ -99,6 +99,30 @@ Some examples:
     ai.1b75
     bo.foo.bar
 
+### Max Points Limit
+
+Results can be restreted to a limit using `max_points` request argument:
+
+    POST /jasper/v1/points
+
+    max_points=2
+
+    {
+      "points": [
+        {
+          "addr": "av.1b6b",
+          "name": "SetpointTemp",
+          "unit": "°F"
+          "path": "/PxHome/Graphics/Campus/Building/Floor1/VavZoneC/SetpointTemp",
+        },
+        {
+          "addr": "bv.1b75",
+          "name": "FanStatus",
+          "path": "/PxHome/Graphics/Campus/Building/Floor1/VavZoneC/FanStatus"
+        },
+      ]
+    }
+
 ### Path Prefix Filter
 
 Results can be restricted to a system sub-path using the `path_prefix` request
