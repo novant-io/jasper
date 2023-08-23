@@ -1,4 +1,4 @@
-# Jaspser Protocol
+# Jasper Protocol
 
 Jasper is a simple JSON-based format for interacting with IoT platforms.
 
@@ -6,9 +6,10 @@ Jasper is a simple JSON-based format for interacting with IoT platforms.
 
 The following HTTP endpoints are supported:
 
-     /jasper/v1/about  - Get information about this system
-     /jasper/v1/points - Get the point information from this system
-     /jasper/v1/values - Get the current value data from this system
+     /jasper/v1/about   - Get information about this system
+     /jasper/v1/sources - Get point sources from this system
+     /jasper/v1/points  - Get point information for a source
+     /jasper/v1/values  - Get current value data from points
 
 ## About
 
@@ -30,35 +31,69 @@ Where required fields are:
 
 Additional system specific information may be returned.
 
+## Sources
+
+A source is any grouped collection of points.  A Jasper endpoint must contain
+at least one source. The `/sources` endpoint provides meta-data information
+about the available sources in this system.
+
+    {
+      "sources": [
+        {
+          "id":   "54d",
+          "name": "Chiller",
+          "path": "/Drivers/NiagaraNetwork/JACE-02/points/Chiller",
+        },
+        {
+          "id":   "620",
+          "name": "VAV-1",
+          "path": "/Drivers/NiagaraNetwork/JACE-05/points/VAV-1",
+        },
+        {
+          "id":   "621",
+          "name": "VAV-2",
+          "path": "/Drivers/NiagaraNetwork/JACE-05/points/VAV-2",
+        },
+        {
+          "id":   "622",
+          "name": "VAV-3",
+          "path": "/Drivers/NiagaraNetwork/JACE-05/points/VAV-3",
+        }
+      ]
+    }
+
+Where the `id` is a unique identifier for this source in the system. The `id`
+is a `String` value type, but the format is an opaque and system dependent.
+
 ## Points
 
 The `/points` endpoint provides meta-data information about the available
-points in this system.
+points in this system.  It takes a required `source_id` argument.
 
     {
       "points": [
         {
-          "addr": "av.1b6b",
-          "name": "SetpointTemp",
+          "addr": "av.DamperPosition",
+          "name": "Damper Position"
+        },
+        {
+          "addr": "bv.FanStatus",
+          "name": "Fan Status"
+        },
+        {
+          "addr": "av.ZoneTemp",
+          "name": "Zone Temp"
           "unit": "°F"
-          "path": "/PxHome/Graphics/Campus/Building/Floor1/VavZoneC/SetpointTemp",
         },
         {
-          "addr": "bv.1b75",
-          "name": "FanStatus",
-          "path": "/PxHome/Graphics/Campus/Building/Floor1/VavZoneC/FanStatus"
+          "addr": "ao.ReturnTemp",
+          "name": "Return Temp"
+          "unit": "°F"
         },
         {
-          "addr": "av.1b6d",
-          "name": "HeatingCoil",
-          "unit": "%"
-          "path": "/PxHome/Graphics/Campus/Building/Floor1/VavZoneC/HeatingCoil",
-        },
-        {
-          "addr": "eo.1b83",
-          "name": "OccStatus",
-          "enum": "occupied,unoccupied"
-          "path": "/PxHome/Graphics/Campus/Building/Floor1/OccStatus",
+          "addr": "ao.DischargeTemp",
+          "name": "Discharge Temp"
+          "unit": "°F"
         }
       ]
     }
@@ -105,10 +140,11 @@ The `/values` endpoint provides current values for points in this system.
 
     {
       "values": [
-        { "addr":"av.1b6b", "val":72.3 },
-        { "addr":"bv.1b75", "val":1 },
-        { "addr":"av.1b6d", "val":25 },
-        { "addr":"eo.1b83", "val":1 }
+        { "addr":"av.DamperPosition", "val":72.0 },
+        { "addr":"bv.FanStatus", "val":1 },
+        { "addr":"av.ZoneTemp", "val":72.0 },
+        { "addr":"ao.ReturnTemp", "val":73.142 },
+        { "addr":"ao.DischargeTemp", "val":68.230 }
       ]
     }
 
@@ -122,20 +158,3 @@ Where `val` is one of:
 
   * If the point does not exist or there is no current value supported, then
     the `null` value.
-
-### Path Prefix Filter
-
-Results can be restricted to a system sub-path using the `path_prefix` request
-argument:
-
-    POST /jasper/v1/values
-
-    path_prefix=/PxHome/Graphics/Campus/Building/Floor1/VavZoneC
-
-    {
-      "values": [
-        { "addr":"av.1b6b", "val":72.3 },
-        { "addr":"bv.1b75", "val":1 },
-        { "addr":"av.1b6d", "val":25 }
-      ]
-    }
