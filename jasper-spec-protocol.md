@@ -68,7 +68,7 @@ is a `String` value type, but the format is an opaque and system dependent.
 ## Points
 
 The `/points` endpoint provides meta-data information about the available
-points in this system.  It takes a required `source_id` argument.
+points under a source.  It takes a required `source_id` argument.
 
     {
       "points": [
@@ -136,7 +136,8 @@ Some examples:
 
 ## Values
 
-The `/values` endpoint provides current values for points in this system.
+The `/values` endpoint provides current values for points under a source.  It
+takes a required `source_id` argument.
 
     {
       "values": [
