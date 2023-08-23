@@ -64,7 +64,7 @@ about the available sources in this system.
 
 Where each source object has:
 
-  * `id`: the unique id for this source in the system
+  * `id`: required unique id for this source in the system
   * `name`: required human readable name of this point
   * `path`: optional path where this source exists in the system
 
@@ -106,8 +106,8 @@ points under a source.  It takes a required `source_id` argument.
 
 Where each point object has:
 
-  * `addr`: the unique addr for this point under a source (see [Point Addr](#point-addr) below)
-  * `name`: the human readable name of this point
+  * `addr`: required unique addr for this point under a source (see [Point Addr](#point-addr) below)
+  * `name`: required human readable name of this point
   * `unit`: the optional unit for this point
   * `enum`: the optional comma-separated list of enum ordinal names
 
