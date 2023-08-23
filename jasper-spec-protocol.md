@@ -88,17 +88,17 @@ points under a source.  It takes a required `source_id` argument.
         },
         {
           "addr": "av.ZoneTemp",
-          "name": "Zone Temp"
+          "name": "Zone Temp",
           "unit": "°F"
         },
         {
           "addr": "ao.ReturnTemp",
-          "name": "Return Temp"
+          "name": "Return Temp",
           "unit": "°F"
         },
         {
           "addr": "ao.DischargeTemp",
-          "name": "Discharge Temp"
+          "name": "Discharge Temp",
           "unit": "°F"
         }
       ]
