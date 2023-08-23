@@ -62,8 +62,14 @@ about the available sources in this system.
       ]
     }
 
-Where the `id` is a unique identifier for this source in the system. The `id`
-is a `String` value type, but the format is an opaque and system dependent.
+Where each source object has:
+
+  * `id`: the unique id for this source in the system
+  * `name`: required human readable name of this point
+  * `path`: optional path where this source exists in the system
+
+The `id` is a `String` value type, but the format is opaque and system
+dependent.
 
 ## Points
 
@@ -100,9 +106,8 @@ points under a source.  It takes a required `source_id` argument.
 
 Where each point object has:
 
-  * `addr`: the unique addr for this point in the system (see [Point Addr](#point-addr) below)
+  * `addr`: the unique addr for this point under a source (see [Point Addr](#point-addr) below)
   * `name`: the human readable name of this point
-  * `path`: the optional path for where this point exists in the system
   * `unit`: the optional unit for this point
   * `enum`: the optional comma-separated list of enum ordinal names
 
