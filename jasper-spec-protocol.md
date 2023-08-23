@@ -42,22 +42,22 @@ about the available sources in this system.
         {
           "id":   "54d",
           "name": "Chiller",
-          "path": "/Drivers/NiagaraNetwork/JACE-02/points/Chiller",
+          "path": "/Drivers/NiagaraNetwork/JACE-02/points/Chiller"
         },
         {
           "id":   "620",
           "name": "VAV-1",
-          "path": "/Drivers/NiagaraNetwork/JACE-05/points/VAV-1",
+          "path": "/Drivers/NiagaraNetwork/JACE-05/points/VAV-1"
         },
         {
           "id":   "621",
           "name": "VAV-2",
-          "path": "/Drivers/NiagaraNetwork/JACE-05/points/VAV-2",
+          "path": "/Drivers/NiagaraNetwork/JACE-05/points/VAV-2"
         },
         {
           "id":   "622",
           "name": "VAV-3",
-          "path": "/Drivers/NiagaraNetwork/JACE-05/points/VAV-3",
+          "path": "/Drivers/NiagaraNetwork/JACE-05/points/VAV-3"
         }
       ]
     }
