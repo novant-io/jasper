@@ -16,6 +16,13 @@ The following HTTP endpoints are supported:
 
 The `/about` endpoint provides meta-data information about the remote system.
 
+Request:
+
+    POST /jasper/v1/about HTTP/1.1
+    Content-Type: application/x-www-form-urlencoded
+
+Response:
+
     {
       "name": "Device 123",
       "vendor": "ACME",
@@ -37,6 +44,13 @@ Additional system specific information may be returned.
 A source is any grouped collection of points.  A Jasper endpoint must contain
 at least one source. The `/sources` endpoint provides meta-data information
 about the available sources in this system.
+
+Request:
+
+    POST /jasper/v1/sources HTTP/1.1
+    Content-Type: application/x-www-form-urlencoded
+
+Response:
 
     {
       "sources": [
@@ -76,6 +90,15 @@ dependent.
 
 The `/points` endpoint provides meta-data information about the available
 points under a source.  It takes a required `source_id` argument.
+
+Request:
+
+    POST /jasper/v1/sources HTTP/1.1
+    Content-Type: application/x-www-form-urlencoded
+
+    source_id=620
+
+Response:
 
     {
       "points": [
@@ -145,6 +168,15 @@ Some examples:
 The `/values` endpoint provides current values for points under a source.  It
 takes a required `source_id` argument.
 
+Request:
+
+    POST /jasper/v1/sources HTTP/1.1
+    Content-Type: application/x-www-form-urlencoded
+
+    source_id=620
+
+Response:
+
     {
       "values": [
         { "addr":"av.DamperPosition", "val":72.0 },
@@ -174,7 +206,7 @@ to invoke:
 
 Request:
 
-    POST /batch HTTP/1.1
+    POST /jasper/v1/batch HTTP/1.1
     Content-Type: application/json
 
     {
