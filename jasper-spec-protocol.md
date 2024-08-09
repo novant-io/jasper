@@ -19,7 +19,6 @@ The `/about` endpoint provides meta-data information about the remote system.
 Request:
 
     POST /jasper/v1/about HTTP/1.1
-    Content-Type: application/x-www-form-urlencoded
 
 Response:
 
@@ -48,7 +47,6 @@ about the available sources in this system.
 Request:
 
     POST /jasper/v1/sources HTTP/1.1
-    Content-Type: application/x-www-form-urlencoded
 
 Response:
 
