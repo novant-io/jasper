@@ -10,6 +10,7 @@ The following HTTP endpoints are supported:
      /jasper/v1/sources - Get point sources from this system
      /jasper/v1/points  - Get point information for a source
      /jasper/v1/values  - Get current value data from points
+     /jasper/v1/batch   - Invoke multiple operations in single request
 
 ## About
 
@@ -164,3 +165,36 @@ Where `val` is one of:
 
   * If the point does not exist or there is no current value supported, then
     the `null` value.
+
+## Batch
+
+The `/batch` endpoint allows invoking multiple operations in a single request.
+The batch endpoint differs in that it takes a JSON body describing the commands
+to invoke:
+
+Request:
+
+    POST /batch HTTP/1.1
+    Content-Type: application/json
+
+    {
+      "ops": [
+        { "op":"about" },
+        { "op":"values", "source_id":"54d" },
+        { "op":"values", "source_id":"621" }
+      ]
+    }
+
+Response:
+
+    {
+      "results": [
+        { "name": "Device 123", "vendor": "ACME", ... },
+        { "values": [...] },
+        { "values": [...] },
+      ]
+    }
+
+Each item in the `"ops"` list models a "request", where the required `"op"`
+key captures the endpoint, and the remaining keys map to the endpoint
+arguments.  All argument values must be string types for consistency.
