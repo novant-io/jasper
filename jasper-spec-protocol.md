@@ -10,6 +10,7 @@ The following HTTP endpoints are supported:
      /jasper/v1/sources - Get point sources from this system
      /jasper/v1/points  - Get point information for a source
      /jasper/v1/values  - Get current value data from points
+     /jasper/v1/write   - Write back to a system point
      /jasper/v1/batch   - Invoke multiple operations in single request
 
 ## About
@@ -91,7 +92,7 @@ points under a source.  It takes a required `source_id` argument.
 
 Request:
 
-    POST /jasper/v1/sources HTTP/1.1
+    POST /jasper/v1/points HTTP/1.1
     Content-Type: application/x-www-form-urlencoded
 
     source_id=620
@@ -168,7 +169,7 @@ takes a required `source_id` argument.
 
 Request:
 
-    POST /jasper/v1/sources HTTP/1.1
+    POST /jasper/v1/values HTTP/1.1
     Content-Type: application/x-www-form-urlencoded
 
     source_id=620
@@ -195,6 +196,35 @@ Where `val` is one of:
 
   * If the point does not exist or there is no current value supported, then
     the `null` value.
+
+## Write
+
+The `/write` endpoint allows writing back to a system point. The arguments are:
+
+  * Required `source_id` of source
+  * Required `point_addr` of point
+  * Required `val` to write to given `point_addr`
+  * Optional priority `level`
+
+Where the provided `val` is a floating point number. For boolean values
+`false` is `0` and `true` is `1`.
+
+For systems that support priority levels, the `level` argument is used to
+specify the write level. To clear a given `level` pass the string `null` as
+the `val` argument.
+
+Request:
+
+    POST /jasper/v1/write HTTP/1.1
+    Content-Type: application/x-www-form-urlencoded
+
+    source_id=620&point_addr=av.DamperPosition&val=50.0
+
+Response:
+
+    {
+      "status": "ok"
+    }
 
 ## Batch
 
